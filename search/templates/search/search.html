@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags util %}
+
+
+{% block title %}Поиск{% endblock %}
+
+{% block content %}
+    <h1>Результаты поиска</h1>
+    <form action="{% url 'search' %}" method="get">
+        <p>Поисковый запрос</p>
+        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+        <input type="submit" value="Search" class="button">
+    </form>
+    {% if search_results %}
+        <ul>
+            {% for result in search_results %}
+                <div style="display: none">
+                    {% get_parse result.url search=search_query|lower as parse_result %}
+                </div>
+                {% if parse_result %}
+                    <li>
+                        <h5><a href="{% pageurl result %}">{{ result }}</a></h5>
+                        {{ result.search_description }}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% elif search_query %}
+        No results found
+    {% endif %}
+{% endblock %}

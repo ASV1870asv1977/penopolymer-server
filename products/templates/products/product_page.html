@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags base_tags products_tags %}
+
+
+{% block content %}
+
+    {% product_card_tag %}
+
+    <div class="container-fluid content-wrapper">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>{{ page.product_name }}</h2>
+                        {% image page.product_image original as image %}
+                        <img src="{{ image.url }}" alt="" class="left-img">
+                        <p>{{ page.product_description|richtext }}</p>
+
+                        {% if page.title  == 'Трубы' %}{% product_1_table_tag %}{% endif %}
+                        {% if page.title  == 'Отводы' %}{% product_2_table_tag %}{% endif %}
+                        {% if page.title  == 'Шаровые краны' %}{% product_3_table_tag %}{% endif %}
+
+                        {% if page.title  == 'Неподвижные опоры' %}{% product_5_table_tag %}{% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

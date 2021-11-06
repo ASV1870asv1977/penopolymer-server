@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags wagtailcore_tags base_tags products_tags %}
+
+
+{% block content %}
+
+    <div class="container-fluid content-wrapper contacts">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Контакты</h2>
+                        <div class="container contacts-wrapper">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4 col-xs-5 text-right text-bold">Адрес:</div>
+                                <div class="col-md10 col-sm-8 col-xs-7">{{ page.address }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4 col-xs-5 text-right text-bold">Телефоны:</div>
+                                <div class="col-md10 col-sm-8 col-xs-7">{{ page.telephones }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4 col-xs-5 text-right text-bold">Факс:</div>
+                                <div class="col-md10 col-sm-8 col-xs-7">{{ page.fax }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4 col-xs-5 text-right text-bold">Сайт:</div>
+                                <div class="col-md10 col-sm-8 col-xs-7">
+                                    <a href="http://{{ page.site_1 }}">{{ page.site_1 }}</a>,
+                                    <a href="http://{{ page.site_2 }}">{{ page.site_2 }}</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4 col-xs-5 text-right text-bold">Электронная почта:</div>
+                                <div class="col-md10 col-sm-8 col-xs-7">
+                                    <a href="mailto:{{ page.email }}">{{ page.email }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="map-wrapper">
+                            {#Яндекс карта#}
+                            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A2b8567b0512faaa184fdb6ed01487617b43dfdb233d8b4b056c88594679cf3df&amp;source=constructor"
+                                    width="1100"
+                                    height="400"
+                                    frameborder="0">
+                            </iframe>
+                        </div>
+                        <h2>Контакты дилеров</h2>
+                        <div class="container dealer-wrapper">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4 col-xs-5 text-right text-bold">Адрес:</div>
+                                <div class="col-md10 col-sm-8 col-xs-7">{{ page.dealer_address }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4 col-xs-5 text-right text-bold">Сайт:</div>
+                                <div class="col-md10 col-sm-8 col-xs-7"><a
+                                        href="http://{{ page.dealer_site }}">{{ page.dealer_site }}</a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4 col-xs-5 text-right text-bold">Электронная почта:</div>
+                                <div class="col-md10 col-sm-8 col-xs-7">
+                                    <a href="mailto:{{ page.dealer_email }}">{{ page.dealer_email }}</a></div>
+                            </div>
+                        </div>
+                        <p>Информацию о сотрудничестве в регионах можно получить по тел/факс: {{ page.fax }} или по
+                            e-mail:
+                            <a href="mailto:{{ page.email }}">{{ page.email }}</a></p>
+                        <p>Приглашаем физических лиц и организации к сотрудничеству на взаимовыгодных условиях по
+                            внедрению
+                            энергосберегающей технологии на тепловых сетях.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+

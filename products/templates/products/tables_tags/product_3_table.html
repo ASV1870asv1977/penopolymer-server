@@ -1,0 +1,32 @@
+{% load static wagtailcore_tags base_tags products_tags %}
+
+<table class="table-striped prod-table">
+    <thead>
+    <tr>
+        <td>Обозначение, марка изделия</td>
+        <td>Условный диаметр, Ду</td>
+        <td>Диаметр штока, d</td>
+        <td>Диаметр изоляции, Диз</td>
+        <td>Толщина изоляции, ?из</td>
+        <td>Н мин</td>
+        <td>Длина плеча отвода, L</td>
+        <td>Масса изолированного шарового крана, кг </td>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for product in product_3.product_3_data.all %}
+        <tr>
+            <td>{{ product.product_brand }}</td>
+            <td>{{ product.diameter_nominal }}</td>
+            <td>{{ product.rod_diameter }}</td>
+            <td>{{ product.diameter_insulation }}</td>
+            <td>{{ product.insulation_thickness }}</td>
+            <td>{{ product.h_min }}</td>
+            <td>{{ product.lever_arm_length }}</td>
+            <td>{{ product.mass }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

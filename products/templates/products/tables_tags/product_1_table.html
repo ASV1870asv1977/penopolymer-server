@@ -1,0 +1,28 @@
+{% load static wagtailcore_tags base_tags products_tags %}
+
+<table class="table-striped prod-table">
+    <thead>
+    <tr>
+        <td>Обозначение, марка изделия</td>
+        <td>Диаметр условный трубопровода, Ду</td>
+        <td>Диаметр наружный трубопровода, Дтр</td>
+        <td>Диаметр изоляции, Диз</td>
+        <td>Толщина изоляции, ?из</td>
+        <td>Масса 1пм. изоляции, кг</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for product in product_1.product_1_data.all %}
+        <tr>
+            <td>{{ product.product_brand }}</td>
+            <td>{{ product.diameter_nominal }}</td>
+            <td>{{ product.diameter_outside }}</td>
+            <td>{{ product.diameter_insulation }}</td>
+            <td>{{ product.insulation_thickness }}</td>
+            <td>{{ product.insulation_mass }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

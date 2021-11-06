@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags wagtailcore_tags base_tags %}
+
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="main-slider">
+                {% for slide in page.slides.all %}
+                    {% image slide.image_slide original as bigimage %}
+                    <div>
+                        <div class="slide-wrap">
+                            <div class="slide-pic" style="background-image: url({{ bigimage.url }})"></div>
+                            <div class="container">
+                                <div class="slide-content">
+                                    <p>
+                                        <span class="slider-head">{{ slide.product_name }}</span>
+                                        {{ slide.product_description|richtext }}
+                                    </p>
+                                    <a href="#" class="slide-button">Описание нашей продукции</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    {% product_card_tag %}
+
+    {% event_news_tag %}
+
+    <div class="container-fluid about-wrapper">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="about-pic">
+                            {% image page.article_image original as image %}
+                            <img src="{{ image.url }}" alt="" class="img-responsive"></div>
+                        <div class="about-text">
+                            <p class="h2">{{ page.article_title }}</p>
+                            <p>{{ page.article|richtext }}</p>
+                            <a href="#" class="about-button">Подробнее о компании</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

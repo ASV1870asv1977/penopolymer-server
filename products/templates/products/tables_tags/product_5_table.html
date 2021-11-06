@@ -1,0 +1,36 @@
+{% load static wagtailcore_tags base_tags products_tags %}
+
+<table class="table-striped prod-table">
+    <thead>
+    <tr>
+        <td>Обозначение, марка изделия</td>
+        <td>Диаметр условный трубопровода, Ду</td>
+        <td>Диаметр наружный трубопровода, d</td>
+        <td>Диаметр изоляции, Диз</td>
+        <td>Толщина изоляции, ?из</td>
+        <td>Длина неподвижной опоры, L</td>
+        <td>Расстояние между щитами, K</td>
+        <td>Размер щита, A</td>
+        <td>Максимальная осевая нагрузка, тн</td>
+        <td>Теоретическая масса НО в ППМ изоляции 1 шт, кг</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for product in product_5.product_5_data.all %}
+        <tr>
+            <td>{{ product.product_brand }}</td>
+            <td>{{ product.diameter_nominal }}</td>
+            <td>{{ product.diameter_outside }}</td>
+            <td>{{ product.diameter_insulation }}</td>
+            <td>{{ product.insulation_thickness }}</td>
+            <td>{{ product.fixed_support_length }}</td>
+            <td>{{ product.distance_between_shields }}</td>
+            <td>{{ product.shield_size }}</td>
+            <td>{{ product.maximum_axial_load }}</td>
+            <td>{{ product.theoretical_weight }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

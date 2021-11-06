@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags base_tags products_tags %}
+
+
+{% block content %}
+    <div class="container-fluid content-wrapper">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>О компании</h2>
+                        {% image page.article_image_first original as image_first %}
+                        <img src="{{ image_first.url }}" alt="" class="left-img" width="300">
+                        <p>{{ page.article|richtext }}</p>
+
+                        {% image page.article_image_second original as image_second %}
+                        <img src="{{ image_second.url }}" alt="" class="right-img" width="300">
+                        <p>{{ page.article_part_two|richtext }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% product_card_tag %}
+
+        <div class="container-fluid content-wrapper">
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>{{ page.name_article_third }}</h2>
+                            {% image page.article_image_third original as image_third %}
+                            <img src="{{ image_third.url }}" alt="" class="left-img">
+                            <p>{{ page.article_part_third|richtext }}</p>
+
+                            {% product_1_table_tag %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

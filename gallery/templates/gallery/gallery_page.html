@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags wagtailcore_tags base_tags %}
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox-thumbs.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+    <div class="container-fluid content-wrapper contacts">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Галерея</h2>
+                    <div class="gallery-wrapper">
+                        <h4>{{ page.gallery_name }}</h4>
+                        <div class="gallery-block row">
+
+                            {% for photo in page.gallery_theme.all %}
+                                {% image photo.photo original as photo %}
+
+                                <div class="col-md-3 col-sm-4">
+                                    <a class="fancybox" href="{{ photo.url }}" rel="gallery-1">
+                                        <img src="{{ photo.url }}" class="img-responsive" alt=""/>
+                                    </a>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="gallery-block row collapse" id="collapseExample">
+                            <div class="col-md-3 col-sm-4">
+                                <a class="fancybox" href="img/gal-pic-3-big.jpg" rel="gallery-1">
+                                    <img src="img/gal-pic-3.jpg" class="img-responsive" alt=""/>
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-4">
+                                <a class="fancybox" href="img/gal-pic-1-big.jpg" rel="gallery-1">
+                                    <img src="img/gal-pic-1.jpg" class="img-responsive" alt=""/>
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-4">
+                                <a class="fancybox" href="img/gal-pic-4-big.jpg" rel="gallery-1">
+                                    <img src="img/gal-pic-4.jpg" class="img-responsive" alt=""/>
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-4">
+                                <a class="fancybox" href="img/gal-pic-1-big.jpg" rel="gallery-1">
+                                    <img src="img/gal-pic-1.jpg" class="img-responsive" alt=""/>
+                                </a>
+                            </div>
+                            <div class="col-md-3 col-sm-4">
+                                <a class="fancybox" href="img/gal-pic-2-big.jpg" rel="gallery-1">
+                                    <img src="img/gal-pic-2.jpg" class="img-responsive" alt=""/>
+                                </a>
+                            </div>
+                        </div>
+
+                        <a class="allphoto" data-toggle="collapse" href="#collapseExample"
+                           aria-expanded="false" aria-controls="collapseExample">Все фотографии</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block extra_js %}
+        <script src="{% static 'js/jquery.fancybox.pack.js' %}"></script>
+        <script src="{% static 'js/jquery.fancybox-thumbs.js' %}"></script>
+    {% endblock %}
+
+{% endblock content %}

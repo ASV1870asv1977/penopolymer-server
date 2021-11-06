@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static wagtailimages_tags wagtailcore_tags base_tags %}
+
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.fancybox-thumbs.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+    <div class="container-fluid content-wrapper contacts">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Библиотека</h2>
+                        <div class="library-wrapper margin-bottom-50 row">
+                            <div class="col-md-12">
+                                <h4>{{ page.subtitle_first }}</h4>
+                                {% for document in page.document_list %}
+                                    {% image document.value.icon original as icondoc %}
+                                    <div class="article-icon">
+                                            <span class="file-icon"
+                                                  style="background-image: url({{ icondoc.url }}); background-repeat: no-repeat">
+                                            </span>
+                                    <a href="#" class="file-link" style="background-image: none">
+                                        {{ document.value.caption }}
+                                    </a>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="articles-wrapper row">
+                            <div class="col-md-12"><h4>{{ page.subtitle_second }}</h4></div>
+                            {% for document in page.document_description %}
+                                <div class="col-md-6">
+                                    <div class="article-item">
+                                        {% image document.value.icon original as icondoc %}
+                                        <div class="article-icon">
+                                            <span class="file-icon"
+                                                  style="background-image: url({{ icondoc.url }}); background-repeat: no-repeat">
+                                            </span>
+                                        </div>
+                                        <div class="article-content">
+                                            <a href="#">
+                                                {{ document.value.caption }}
+                                            </a>
+                                            <p>{{ document.value.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <div class="col-md-12">
+                                <a href="#" class="articles-button">Больше статей</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% event_news_tag %}
+
+    {% block extra_js %}
+        <script src="{% static 'js/jquery.fancybox.pack.js' %}"></script>
+        <script src="{% static 'js/jquery.fancybox-thumbs.js' %}"></script>
+    {% endblock %}
+
+{% endblock content %}
