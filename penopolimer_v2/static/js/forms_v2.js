@@ -13,7 +13,7 @@ window.onload = function (message) {
     }
 
     var count = 0
-    for ( let i=0; i < products_list.length; i++) {
+    for (let i = 0; i < products_list.length; i++) {
         order_card_draw(products_list[i]);
     }
 
@@ -21,8 +21,9 @@ window.onload = function (message) {
 
         count += 1;
         let orders_table = document.getElementById('orders_table');
+
         let order_card = document.createElement('tr');
-        orders_table.appendChild(order_card);
+        order_card.setAttribute('id', 'product_row_' + count)
 
         let cell_count = document.createElement('td');
         order_card.appendChild(cell_count);
@@ -42,7 +43,10 @@ window.onload = function (message) {
 
         let cell_delete = document.createElement('td');
         let cell_delete_link = document.createElement('a');
+        cell_delete_link.setAttribute('id', 'product_del_' + count)
+        cell_delete_link.addEventListener('click', order_del_product);
         let cell_delete_i = document.createElement('i');
+        cell_delete_i.setAttribute('id', 'product_del_i_' + count)
         cell_delete_link.setAttribute('href', '#');
         cell_delete_link.classList.add('delete-link');
         cell_delete_i.classList.add('fa');
@@ -93,6 +97,14 @@ window.onload = function (message) {
 
     function get_select(id) {
         return document.getElementById(id).selectedIndex
+    }
+
+    function order_del_product(e) {
+        let product_number_id = parseInt(e.target.getAttribute('id')[e.target.getAttribute('id').length - 1]);
+        products_list.splice(product_number_id - 1, 1);
+        localStorage.setItem("products_list", JSON.stringify(products_list));
+
+        window.location.reload()
     }
 
 }
