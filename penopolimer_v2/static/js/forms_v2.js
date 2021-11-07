@@ -2,27 +2,31 @@ window.onload = function (message) {
 
     let add_order_auto = document.getElementById('add_order_auto');
     let add_order_hand = document.getElementById('add_order_hand');
+    let order_list_title = document.getElementById('order_list_title');
+    let order_list_head = document.getElementById('order_list_head');
 
     let products_list = JSON.parse(localStorage.getItem('products_list'));
     if (products_list == null) {
         products_list = [];
+        order_list_title.style.display = 'none';
+        order_list_head.style.display = 'none';
     }
 
-
-    console.log('products_list---', products_list)
+    var count = 0
+    for ( let i=0; i < products_list.length; i++) {
+        order_card_draw(products_list[i]);
+    }
 
     function order_card_draw(product) {
 
-        // console.log('table---', product)
-
+        count += 1;
         let orders_table = document.getElementById('orders_table');
-
         let order_card = document.createElement('tr');
         orders_table.appendChild(order_card);
 
         let cell_count = document.createElement('td');
         order_card.appendChild(cell_count);
-        // cell_count.textContent = ;
+        cell_count.textContent = count;
 
         let cell_name = document.createElement('td');
         order_card.appendChild(cell_name);
@@ -36,7 +40,6 @@ window.onload = function (message) {
         order_card.appendChild(cell_unit);
         cell_unit.textContent = product['field_unit'];
 
-
         let cell_delete = document.createElement('td');
         let cell_delete_link = document.createElement('a');
         let cell_delete_i = document.createElement('i');
@@ -49,11 +52,7 @@ window.onload = function (message) {
         order_card.appendChild(cell_delete);
 
         orders_table.appendChild(order_card)
-
     }
-
-
-// orders_form.appendChild()
 
     add_order_auto.onclick = function () {
         let product = {
@@ -65,10 +64,9 @@ window.onload = function (message) {
             field_unit: 'Выбор из списка',
             field_note: document.getElementById('feed_msg2').value
         }
-        console.log('auto',product);
         products_list.push(product);
         localStorage.setItem('products_list', JSON.stringify(products_list));
-        alert('products_list---')
+        display_block_orders_form();
         order_card_draw(product);
     }
 
@@ -82,13 +80,16 @@ window.onload = function (message) {
             field_unit: document.getElementById('value-name9').value,
             field_note: document.getElementById('feed_msg').value
         }
-        console.log('hand', product)
         products_list.push(product);
         localStorage.setItem('products_list', JSON.stringify(products_list));
-        alert('products_list---');
+        display_block_orders_form();
         order_card_draw(product);
     }
 
+    function display_block_orders_form() {
+        order_list_title.style.display = 'block';
+        order_list_head.style.display = 'block';
+    }
 
     function get_select(id) {
         return document.getElementById(id).selectedIndex
