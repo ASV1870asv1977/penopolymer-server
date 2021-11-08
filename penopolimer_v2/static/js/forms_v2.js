@@ -13,9 +13,23 @@ window.onload = function (message) {
     }
 
     var count = 0
+
+    let data_field = document.createElement('textarea');
+    let orders_table = document.getElementById('orders_table');
+
     for (let i = 0; i < products_list.length; i++) {
         order_card_draw(products_list[i]);
+       products_field(count, products_list[i]);
     }
+
+
+
+    function products_field(count, product) {
+        data_field.textContent += count + '. ' + product.field_name + ' | ' + product.field_quantity + ' | ' + product.field_unit + ' | ' + product.field_note + '\n';
+        data_field.style.display = 'none';
+        orders_table.appendChild(data_field);
+    }
+
 
     function order_card_draw(product) {
 
@@ -65,13 +79,14 @@ window.onload = function (message) {
             field_diameter: document.getElementById('value-name3').options[get_select('value-name3')].text,
             field_thickness: document.getElementById('value-name4').options[get_select('value-name4')].text,
             field_quantity: document.getElementById('value-name5').value,
-            field_unit: 'Выбор из списка',
+            field_unit: 'единиц (по умолчанию)',
             field_note: document.getElementById('feed_msg2').value
         }
         products_list.push(product);
         localStorage.setItem('products_list', JSON.stringify(products_list));
         display_block_orders_form();
         order_card_draw(product);
+        products_field(count, product)
     }
 
     add_order_hand.onclick = function () {
@@ -88,6 +103,7 @@ window.onload = function (message) {
         localStorage.setItem('products_list', JSON.stringify(products_list));
         display_block_orders_form();
         order_card_draw(product);
+        products_field(count, product)
     }
 
     function display_block_orders_form() {
